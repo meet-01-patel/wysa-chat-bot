@@ -1,0 +1,35 @@
+.main-bg {
+    Background : linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.login-containar {
+    display: flex;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.ant-card .ant-card-body {
+    padding: 8px !important;
+}
+.theme-setting {
+    position: absolute;
+    top: 20px;
+}
+
+label {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.color-picker-containar {
+    flex-direction: column;
+}
+
+input {
+    border-radius: 4px !important;
+}
