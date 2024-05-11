@@ -1,5 +1,10 @@
+:root {
+    --main-bg-color-grad-1: #DDEEED 63.17%;
+    --main-bg-color-grad-2: #FDF1E0 94.92%;
+    --enter-icon: #0000 100%;
+  }
 .main-bg {
-    Background : linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%);
+    Background : linear-gradient(239.26deg,var(--main-bg-color-grad-1, #DDEEED 63.17%), var(--main-bg-color-grad-2, #FDF1E0 94.92%));
     height: 100vh;
     overflow: hidden;
     display: flex;
@@ -32,4 +37,16 @@ label {
 
 input {
     border-radius: 4px !important;
+}
+
+.ant-popover {
+    margin-right: 8px !important;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+  }
+
+.ant-input-outlined:focus {
+    box-shadow: none !important;
 }

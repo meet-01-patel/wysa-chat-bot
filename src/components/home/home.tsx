@@ -1,48 +1,80 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./home.css";
-import { Button, Card, Col, Input, Row, Space } from "antd";
+import { Input, Space } from "antd";
 import { SendOutlined } from "@ant-design/icons";
+import Message, { MessageData } from "../models/messageModal";
+import MessageList from "../messageList/messageList";
 export default function Home() {
-  let [message, setNewMessage] = useState([
-    { message: "Hi there", fromUser: false },
-    { message: "How can I help You?", fromUser: false },
-  ]);
-
+  let [message, setNewMessage] = useState<Message[]>([]);
   let [messageInput, setMessageInput] = useState("");
+  let [isScroll, setScroll] = useState(false);
+  const [delay, setDelay] = useState(1000);
+  const div = useRef<HTMLDivElement>(null);
 
-  const pushData = () => {
-    let newMessage = message;
-    console.log("message: ");
-    console.log("messageInput: ", messageInput);
+  // To scroll down when the message list is overflowing
+  useEffect(() => {
+    setScroll(false);
+    if (div.current) {
+      div.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [isScroll]);
 
-    setNewMessage([...newMessage, { message: messageInput, fromUser: true }]);
-    // message = [...newMessage]
-    console.log("newMessage: ", newMessage);
+  // Adding new message to the array to display
+  const addNewMessage = () => {
+    if (messageInput !== "") {
+      let newMessage = message;
+      setNewMessage([
+        ...newMessage,
+        { message: messageInput, fromUser: true, image: "" },
+      ]);
+      setMessageInput("");
+      setScroll(true);
+      return message;
+    }
+  };
 
-    return message;
+  // to get query params for delay message bubble
+  useEffect(() => {
+    setNewMessage([]);
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const timmer = params.get("delay");
+    if (timmer) {
+      var time = parseInt(timmer);
+      setDelay(time);
+    }
+    const timeoutIds = MessageData.map((item, index) =>
+      setTimeout(() => {
+        setNewMessage((prevArray) => [...prevArray, item]);
+      }, index * delay)
+    );
+
+    // Clean up timeouts when component unmounts
+    return () => {
+      timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
+  }, [delay]);
+
+  // Send message when enter is pressed
+  const onPressEnter = (event: any) => {
+    if (event.keyCode === 13) {
+      addNewMessage();
+    }
   };
   return (
     <>
       <div className="main-chat-containar">
         <div className="inner-chat-containar">
           <div className="chat-message-text">
-
-          
-          {message.map((item: any, index: number) => (
-            <Row gutter={5} className="">
-              <Col span={24} className={item.fromUser ? 'chat-card' : ''}>
-                <Card
-                  style={{ width: "fit-content" }}
-                  key={index}
-                  className="message-card"
-                >
-                  <div className="chat-message">
-                    <span> {item.message} </span>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          ))}
+            {message.map((item: any, index: number) => (
+              <MessageList
+                key={index}
+                message={item.message}
+                fromUser={item.fromUser}
+                index={index}
+                image={item.image}
+              />
+            ))}
           </div>
           <Space.Compact style={{ width: "100%" }}>
             <Input
@@ -51,10 +83,14 @@ export default function Home() {
               onChange={(e) => {
                 setMessageInput(e.target.value);
               }}
+              onKeyDown={onPressEnter}
             />
-            <Button type="primary" className="send-icon" onClick={() => pushData()} shape="default" icon={ <SendOutlined  />} />
-           
+            <SendOutlined
+              className="send-icon"
+              onClick={() => addNewMessage()}
+            />
           </Space.Compact>
+          <div ref={div}></div>
         </div>
       </div>
     </>
