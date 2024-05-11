@@ -12,6 +12,7 @@ import {
 } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import { ThemeOptions } from "./components/models/themeModal";
+import UploadAvtar from "./components/profile/profile";
 
 function App() {
   const [primary, setPrimary] = React.useState("#00000");
@@ -19,6 +20,7 @@ function App() {
   const [baseBGColor, setBaseBGColor] = React.useState("#fff");
   const [themeValue, setThemeValue] = useState("light");
   const themeOptions = ThemeOptions;
+  document.title = 'Wysa - Chat bot';
 
   // Change default theme variable
   const onChangeThemeValue = ({ target: { value } }: RadioChangeEvent) => {
@@ -130,7 +132,11 @@ function App() {
         }}
       >
         <div className="main-bg">
+        <div className="chat-containar-height">
           <Home />
+          <div className="avtar-containar">
+            <UploadAvtar />
+          </div>
           <Popover
             content={content}
             title="Setting"
@@ -143,6 +149,7 @@ function App() {
               className="theme-setting"
             />
           </Popover>
+        </div>
         </div>
       </ConfigProvider>
     </>

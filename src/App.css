@@ -1,52 +1,83 @@
 :root {
-    --main-bg-color-grad-1: #DDEEED 63.17%;
-    --main-bg-color-grad-2: #FDF1E0 94.92%;
-    --enter-icon: #0000 100%;
-  }
+  --main-bg-color-grad-1: #ddeeed 63.17%;
+  --main-bg-color-grad-2: #fdf1e0 94.92%;
+  --enter-icon: #0000 100%;
+}
 .main-bg {
-    Background : linear-gradient(239.26deg,var(--main-bg-color-grad-1, #DDEEED 63.17%), var(--main-bg-color-grad-2, #FDF1E0 94.92%));
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+  background: linear-gradient(
+    239.26deg,
+    var(--main-bg-color-grad-1, #ddeeed 63.17%),
+    var(--main-bg-color-grad-2, #fdf1e0 94.92%)
+  );
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.chat-containar-height {
+  height: 87vh;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #6a8689 #c2d3e1;
+  padding-top: 9em;
+}
+
+@media screen and (max-width: 480px) {
+  .inner-chat-containar {
+    min-width: 28em;
+    max-width: 38em;
+  }
 }
 
 .login-containar {
-    display: flex;
-    align-content: stretch;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .ant-card .ant-card-body {
-    padding: 8px !important;
+  padding: 8px !important;
 }
 .theme-setting {
-    position: absolute;
-    top: 20px;
+  position: absolute;
+  top: 20px;
 }
 
 label {
-    margin-top: 8px;
-    text-align: center;
-    font-size: 18px;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .color-picker-containar {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 input {
-    border-radius: 4px !important;
+  border-radius: 4px !important;
 }
 
 .ant-popover {
-    margin-right: 8px !important;
+  margin-right: 8px !important;
 }
 
 .mb-10 {
-    margin-bottom: 10px;
-  }
+  margin-bottom: 10px;
+}
 
 .ant-input-outlined:focus {
-    box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.avtar-containar {
+  height: fit-content;
+  border-radius: 54px;
+  position: absolute;
+  right: 75px;
+  top: 8px;
 }

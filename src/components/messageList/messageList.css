@@ -1,0 +1,18 @@
+.chat-message {
+  background-color: var(--chat-message-bg, #fff);
+}
+
+.chat-message-text .message-card {
+  border-radius: 8px;
+}
+
+.chat-message-text .ant-row:last-child .message-card {
+  border-radius: 0px 20px 20px 20px;
+}
+.chat-message-text .user-message-card {
+  border-radius: 8px;
+}
+
+.chat-message-text .ant-row:last-child .user-message-card {
+  border-radius: 20px 0px 20px 20px;
+}

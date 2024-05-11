@@ -63,7 +63,7 @@ export default function Home() {
   };
   return (
     <>
-      <div className="main-chat-containar">
+      {/* <div className="main-chat-containar"> */}
         <div className="inner-chat-containar">
           <div className="chat-message-text">
             {message.map((item: any, index: number) => (
@@ -92,7 +92,7 @@ export default function Home() {
           </Space.Compact>
           <div ref={div}></div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }
