@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# [Try Now Live Demo](https://wysa-chat-bot.vercel.app/)
+
+### To customize the message delay, add queryparams `/?delay=3000`
+##
 ## Available Scripts
 
 In the project directory, you can run:
