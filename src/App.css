@@ -16,8 +16,7 @@
 }
 
 .chat-containar-height {
-  height: 87vh;
-
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: center;
